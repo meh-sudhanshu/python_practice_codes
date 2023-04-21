@@ -64,7 +64,7 @@ finally:
 
 
 
-arr = [1,2,3,4,5]
+arr = [1,2,3]
 
 try:
     if len(arr) >=4:
@@ -74,6 +74,37 @@ try:
 except ValueError as err:
     print(err)
 
+
+#how to define custom exceptions in python
+
+
+
+class CustomException(Exception):
+    "This is a custom exeption"
+    pass
+
+try:
+    x = 20
+    if x==20:
+        raise CustomException
+    else:
+        print("x is not 20")
+except CustomException as err:
+    print("exception occured")
+
+
+
+
+
+
+
+
+
+
+
+
+
+#this is a dummy comment
 
 
 
