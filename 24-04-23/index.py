@@ -76,7 +76,60 @@ def findLcm(a,b):
         greater+=1
     return lcm
 
-print(findLcm(18,20))
+#print(findLcm(18,20))
+
+
+
+
+
+def doJob(n):
+    if n<=2:
+        return
+    print(n)
+    doJob(n-1)
+    print(n)
+
+
+#doJob(10)
+
+
+
+def doJob2(n):
+    if n<=5:
+        return
+    doJob2(n-1)
+    print(n,end=" ")
+    doJob2(n-1)
+    print(n,end=" ")
+#doJob2(8)
+
+
+
+def printSteps(source,helper,destination,n):
+    if n<=0:
+        return
+    print(source,"to",helper)
+    printSteps(source,)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#this is a dummy comment
 
 
 
