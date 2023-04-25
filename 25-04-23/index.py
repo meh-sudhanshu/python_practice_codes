@@ -33,7 +33,55 @@ def sumOfNFibonaciNumber(n):
         second = next
     print(result)
 
-sumOfNFibonaciNumber(10)
+#sumOfNFibonaciNumber(10)
+
+
+
+arr = [1,2,1,2,1,2,3,4,5,3,4,5,6,7]
+my_set = set(arr)
+
+#for ele in my_set:
+    #print(ele,end=" ")
+
+
+my_set.add(34) # add 34 to the my_set
+
+my_set.clear() # clear all the values of my_set
+
+my_set.copy() # return a copy of set
+
+
+# This is a dictionary
+
+
+my_dict = {
+    "name":"sudhanshu",
+    "age":24,
+    "Occupation":"Developer"
+}
+
+
+print(type(my_dict))
+print(my_dict["name"])
+my_dict["name"] = "sudhanshu kumar"
+print(my_dict["name"])
+
+updated_name = {
+    "name":"Twenkel sen"
+}
+my_dict.update(updated_name)
+print(my_dict["name"])
+
+
+
+
+
+
+
+
+
+
+#This is a dummy comment
 
 
 
