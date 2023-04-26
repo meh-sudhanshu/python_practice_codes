@@ -41,19 +41,23 @@ class SubSchool(School):
 #print(my_school.getAge())
 
 class Parent1:
-    def getParentName():
-        return "parent1"
-
+    def getParentName(self):
+        print("parent1")
+        super(Parent1,self).getParentName()
 class Parent2:
-    def defParentName():
-        return "Parent2"
+    def getParentName(self):
+        print("Parent2")
+        super(Parent2,self).getParentName()
 class Parent3:
-    def getParentName():
-        return "Parent 3"
-
+    def getParentName(self):
+        print("Parent 3")
 class Child(Parent1 , Parent2 , Parent3):
-    def getAllParent():
+    def getAllParent(self):
         #write custom logic here to get all parents name
+        super(Child, self).getParentName()
+obj = Child()
+obj.getParentName()
+
 
 
 
