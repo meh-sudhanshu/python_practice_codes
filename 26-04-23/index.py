@@ -54,6 +54,12 @@ class Parent3:
 class Child(Parent1 , Parent2 , Parent3):
     def getAllParent():
         #write custom logic here to get all parents name
+        print(Parent1.getParentName())
+        print(Parent2.defParentName())
+        print(Parent3.getParentName())
+
+
+Child.getAllParent()
 
 
 
