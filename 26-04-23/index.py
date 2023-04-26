@@ -59,7 +59,7 @@ class Child(Parent1 , Parent2 , Parent3):
         for base in Child.__bases__:
             parent_list.append(base)
         print(parent_list)
-my_child = Child()
+#my_child = Child()
 #parent_list = []
 #print(my_child.__bases__)
 #for base in Child.__bases__:
@@ -68,6 +68,64 @@ my_child = Child()
 #print(my_child.getName())
 
 
+#print("sudhanshu","Kumar","nityanand","singh")
+#print("sudhansu")
+
+
+def addNumbers(a,b):
+    print(a+b)
+
+def addNumbers2(*args):
+    sum = 0
+    for value in args:
+        sum+=value
+    print(sum)
+
+#addNumbers2(10)
+#addNumbers2(10,20)
+
+#addNumbers2(10,20)
+#addNumbers2(10,20,30)
+
+
+# def addNumbers3(arg1 , arg2 , *arg3):
+#     print(arg1,arg2,arg3)
+
+#addNumbers3(10,20,30)
+#addNumbers3(10,20,30,40,50,60)
+
+
+def addNumbers(a,b,c=2):
+    print(a+b+c)
+
+#addNumbers(10,20)
+#addNumbers(10,20,30)
+
+
+#def doJob(agr1,agr2,agr3):
+    print("sudhanshu")
+
+#def doJob(arg1):
+    #print("sudhanshu kumar nityanand singh")
+
+#doJob(10)
+#oJob(10,20,30)
+
+class Animal:
+    def printSomething(self):
+        print("Animals are good by nature")
+    def canFly(self,name):
+        if(name == "tarak"):
+            print("animal tarak can fly")
+        else:
+            print("no animals can fly")
+class Dog(Animal):
+    def canFly(self):
+        print("dogs can not fly")
+class Tarak(Animal):
+    def canFly(self):
+        print("tarak can fly")
+#my_tarak.canFly()
 
 
 
