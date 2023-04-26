@@ -1,14 +1,30 @@
 class Library:
-    def getAllBooks():
+    def getAllBooks(self):
+        #pass
+        print("4 books availabe")
+    def addBook(self):
         pass
-    def addBook():
+        print("SAM edition")
+    def getBookByAuthorName(self,name):
+        if(name==zaiba):
+            print("ZAIBA edition")
+        elif(name==sony):
+            print("SONY edition")
+        elif(name==sabi):
+            print("SABI edition")
+        elif(name==mussu):
+            print("MUSSU edition")
+        else:
+            print("SAM edition")
+            
         pass
-    def getBookByAuthorName():
-        pass
+    
     def sortBooksInTopologicalOrder():
+        getBookByAuthorName().topologicalsort
+        
         pass
     def getAllSubscribers():
-        pass
+        
     def getAllEarnings():
         pass
     def getUnavailableBooks():
