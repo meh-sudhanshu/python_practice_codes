@@ -18,3 +18,4 @@ class MyLibrary(Library):
     def getFaviourtBook():
         pass
     def getFaviourtCustomer():
+        pass
