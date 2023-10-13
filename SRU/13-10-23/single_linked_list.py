@@ -8,6 +8,7 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.start = None
+        self.merged_list = None
     def append_node(self,data):
         new_node = Node(data)
         current = self.start
@@ -92,6 +93,53 @@ class LinkedList:
             new_node.next = current.next
             current.next = new_node
 
+    # def merge_sorted_list(self,list1,list2,ans):
+    #     current = self.merged_list
+    #     while list1 is not None or list2 is not None:
+    #         if list1 is None:
+    #             while list2 is not None:
+    #                 ans.append_node(list2.data)
+    #                 list2 = list2.next
+    #         elif list2 is None:
+    #             while list1 is not None:
+    #                 ans.append_node(list1.data)
+    #                 list1 = list1.next
+    #         elif list1.data > list2.data:
+    #             ans.append_node(list1.data)
+    #             list1 = list1.next
+    #         else:
+    #             ans.append_node(list2.data)
+    #             list2 = list2.next
+    #     return ans
+
+    def rotate_list(self,k):
+        current = self.start
+        length = self.get_length()
+        counter = length-k-1
+        while counter !=0:
+            current = current.next
+            counter-=1
+        temp_current = current
+        current = current.next
+        temp_current.next = None
+        while current is not None:
+            temp_current = current.next
+            current.next = self.start
+            self.start = current
+            current = temp_current
+    
+
+
+
+
+        
+
+                    
+
+                    
+
+         
+
 
             
                 
@@ -109,16 +157,36 @@ my_list = LinkedList()
 for i in range(12):
     my_list.append_node(i)
 #my_list.print_list()
-#my_list.reverse_list()
-#my_list.print_list()
-#print(my_list.get_length())
-#my_list.delete_middle()
+# #my_list.reverse_list()
+# #my_list.print_list()
+# #print(my_list.get_length())
+# #my_list.delete_middle()
+# my_list.print_list()
+# #print(my_list.find_median())
+# my_list.delete_after_and_before(0)
+# my_list.print_list()
+# my_list.insert_after(6,100)
+# my_list.print_list()
+
+# list1 = LinkedList()
+# for i in range(11,25):
+#     list1.append_node(i)
+
+# list2 = LinkedList()
+# for i in range(7,28):
+#     list2.append_node(i)
+
+# list1.print_list()
+# list2.print_list()
+
+
+
+# ans.print_list()
+
+my_list.rotate_list(3)
 my_list.print_list()
-#print(my_list.find_median())
-my_list.delete_after_and_before(0)
-my_list.print_list()
-my_list.insert_after(6,100)
-my_list.print_list()
+
+
 
 
 
