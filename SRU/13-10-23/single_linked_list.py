@@ -92,6 +92,8 @@ class LinkedList:
             new_node = Node(value_to_be_inserted)
             new_node.next = current.next
             current.next = new_node
+    def generate_number(self):
+        
 
     # def merge_sorted_list(self,list1,list2,ans):
     #     current = self.merged_list
