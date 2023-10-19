@@ -20,29 +20,31 @@ def build_graph(number_of_vertices):
 
     graph[0].append([0,1,10])
     graph[0].append([0,2,8])
+    graph[0].append([0,3,8])
+    graph[0].append([0,4,8])
 
     graph[1].append([1,0,5])
-    graph[1].append([1,3,5])
-    graph[1].append([1,4,10])
+    # graph[1].append([1,3,5])
+    # graph[1].append([1,4,10])
 
-    graph[2].append([2,3,7])
+    #graph[2].append([2,3,7])
     graph[2].append([2,0,8])
 
-    graph[3].append([3,2,7])
-    graph[3].append([3,1,10])
+    graph[3].append([3,0,7])
+    #graph[3].append([3,1,10])
 
-    graph[4].append([4,7,10])
-    graph[4].append([4,5,8])
-    graph[4].append([4,1,8])
+    graph[4].append([4,0,10])
+    # graph[4].append([4,5,8])
+    # graph[4].append([4,1,8])
 
-    graph[5].append([5,4,8])
-    graph[5].append([5,6,3])
+    # graph[5].append([5,4,8])
+    # graph[5].append([5,6,3])
 
-    graph[6].append([6,5,2])
-    graph[6].append([6,7,3])
+    # graph[6].append([6,5,2])
+    # graph[6].append([6,7,3])
 
-    graph[7].append([7,6,2])
-    graph[7].append([7,4,10])
+    # graph[7].append([7,6,2])
+    # graph[7].append([7,4,10])
 
     return graph
 
@@ -112,6 +114,20 @@ def multi_solver(graph,src,des,psf,wsf,visited,threshold):
     visited[src] = False
 
 
+def get_center(graph,n):
+    for i in range(n):
+        queue = deque()
+        visited = set()
+        start = i
+        psf = ""
+        center_arr = []
+        queue.append([start,""])
+        v = bfs(graph,queue,visited,psf,n,center_arr)
+        if v == -1:
+            break
+
+
+
 # def get_connected_components(graph, number_of_vertices):
 #     global components
 #     visited = [False for i in range(number_of_vertices)]
@@ -119,11 +135,11 @@ def multi_solver(graph,src,des,psf,wsf,visited,threshold):
 #         component = ""
 #         if visited[i] == False:
             
-# def draw_tree(graph,vertex,visited,csf):
+# def draw_tree(graph,vertex,visied,csf):
 #     visited[vertex] = True
 #     for edge in graph[vertex]:
         
-def bfs(graph,queue,visited,psf,origin):
+def bfs(graph,queue,visited,psf,n,center_arr):
     #my_map = {}
     #flag = True
     while queue:
@@ -145,6 +161,11 @@ def bfs(graph,queue,visited,psf,origin):
                 #updated_value = my_map[level]+[src]
                 #my_map[level] = updated_value
         print(psf)
+        if len(psf) != 1 or len(psf) != 0:
+            center_arr.append(psf[-1])
+            if len(center_arr) == n-1:
+                print(center_arr)
+                return -1
         #next_level = level+1
         for nbr in graph[removed_node[0]]:
             if nbr[1] not in visited:
@@ -161,7 +182,7 @@ def main():
     #global min_weight_path
     #global max_weight
     #global max_weight_path
-    number_of_vertices = 8
+    number_of_vertices = 5
     graph = build_graph(number_of_vertices)
     #print(graph)
     #print_graph(graph)
@@ -190,7 +211,8 @@ def main():
     start = 0
     psf = ""
     queue.append([start,""])
-    bfs(graph,queue,visited,psf,start)
+    #bfs(graph,queue,visited,psf)
+    get_center(graph,number_of_vertices)
 
 
 
