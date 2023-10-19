@@ -1,8 +1,3 @@
-
-
-
-
-
 def hash_fn(value):
     return value%10
 
@@ -16,13 +11,6 @@ def probe(hash_table,ci):
             return ci
         else:
             probe_number+=1
-
-
-
-
-
-
-
 def quadratic_probing(search_keys,n):
     hash_table = [-1 for i in range(n)]
     for key in search_keys:

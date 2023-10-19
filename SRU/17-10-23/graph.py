@@ -124,33 +124,33 @@ def multi_solver(graph,src,des,psf,wsf,visited,threshold):
 #     for edge in graph[vertex]:
         
 def bfs(graph,queue,visited,psf,origin):
-    my_map = {}
-    flag = True
+    #my_map = {}
+    #flag = True
     while queue:
         removed_node = queue.popleft()
         #print("level of ",removed_node," is",removed_node[2])
         #print(removed_node,"removed node",end=" ")
-        visited.add(tuple(removed_node))
-        #psf = (removed_node[1]+str(removed_node[0]))
-        level = removed_node[2]
-        src = removed_node[0]
-        if flag == True:
-            my_map[origin] = [src+1]
-            flag = False
-        if level not in my_map:
-            if src != origin:
-                my_map[level] = [src]
-        else:
-            if src != origin:
-                updated_value = my_map[level]+[src]
-                my_map[level] = updated_value
-        #print(psf)
-        next_level = level+1
+        visited.add(removed_node[0])
+        psf = (removed_node[1]+str(removed_node[0]))
+        #level = removed_node[2]
+        #src = removed_node[0]
+        #if flag == True:
+        #my_map[origin] = [src+1]
+        #flag = False
+        #if level not in my_map:
+        #if src != origin:
+        #my_map[level] = [src]
+        #else:
+            #if src != origin:
+                #updated_value = my_map[level]+[src]
+                #my_map[level] = updated_value
+        print(psf)
+        #next_level = level+1
         for nbr in graph[removed_node[0]]:
             if nbr[1] not in visited:
-                queue.append([nbr[1],psf,next_level])
+                queue.append([nbr[1],psf])
                 visited.add(nbr[1])
-    print(my_map)
+    #print(my_map)
          
         
         
@@ -189,7 +189,7 @@ def main():
     visited = set()
     start = 0
     psf = ""
-    queue.append([start,"",1])
+    queue.append([start,""])
     bfs(graph,queue,visited,psf,start)
 
 
