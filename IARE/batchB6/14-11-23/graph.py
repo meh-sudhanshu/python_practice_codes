@@ -68,6 +68,31 @@ def printAllPath(graph,src,des,psf,visited):
             printAllPath(graph,edge[1],des,psf,visited) 
     visited[src] = False
 
+longestPath , shortestPath = "",""
+minimumWeight, maximumWeight= float('inf'), float('-inf')
+
+def multiSolver(graph,src,des,psf,visited,wsf):
+    global longestPath,shortestPath,minimumWeight,maximumWeight
+    if src == des:
+        psf+=str(src)
+        if len(psf) > len(longestPath):
+            longestPath = psf
+        if len(psf) < len(shortestPath) or len(shortestPath) == 0:
+            shortestPath = psf
+        if wsf > maximumWeight:
+            maximumWeight = wsf 
+        if wsf < minimumWeight:
+            minimumWeight = wsf
+        return
+    psf+=str(src)
+    visited[src] = True
+    for edge in graph[src]:
+        if visited[edge[1]] == False:
+            multiSolver(graph,edge[1],des,psf,visited,wsf+edge[2]) 
+    visited[src] = False
+
+
+
 
 n = 8
 edges = [[1,2,4],[1,4,10],
@@ -86,3 +111,7 @@ print(hasPath(graph,1,8,visited))
 print(isGraphConnected(graph,n))
 
 printAllPath(graph,1,8,"",[False for i in range(n+1)])
+
+
+multiSolver(graph,1,8,"",[False for i in range(n+1)],0)
+print(longestPath,shortestPath,maximumWeight,minimumWeight)
