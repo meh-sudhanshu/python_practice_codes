@@ -22,7 +22,7 @@ def printGraph(graph):
         print()
 
 def isPathExist(src,des,graph,visited):
-    if src == des:
+    if src == des and len(visited)>1:
         return True
     info = graph[src]
     for i in range(len(info)):
@@ -53,6 +53,13 @@ def printAllPaths(src,des,graph,visited,psf,wsf):
                 visited.remove(i)
                 # if flag == True:
                 #     return True
+
+def isCyclic(graph,n,visited):
+    for i in range(n):
+        flag = isPathExist(i,i,graph,visited )
+        if flag == True:
+            return True
+    return False
     
 edges = [[0,2,8],[0,1,-9],[1,3,7],[4,5,56],[5,6,1],
             [6,7,69],[7,4,67],[3,2,65],[3,4,8]]
@@ -66,11 +73,13 @@ visited = []
 src = 0
 des = 2
 visited.append(src)
-#print(isPathExist(src,des,graph,visited))
-printAllPaths(src,des,graph,visited,str(src),0)
+# #print(isPathExist(src,des,graph,visited))
+# printAllPaths(src,des,graph,visited,str(src),0)
 
-print(longestPath,"longest")
-print(shortestPath,"shortest")
-print(minWeight,"min-weight")
-print(maxWeight,"max-weight")
+# print(longestPath,"longest")
+# print(shortestPath,"shortest")
+# print(minWeight,"min-weight")
+# print(maxWeight ,"max-weight")
+
+print(isCyclic(graph,nodes,visited))
 
