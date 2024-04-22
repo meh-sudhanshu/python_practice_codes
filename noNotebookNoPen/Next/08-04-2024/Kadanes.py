@@ -8,5 +8,5 @@ def main():
             ans = cts
         if cts < 0:
             cts = 0
-    print(ans)
+    print(max(ans,cts))
 main()
