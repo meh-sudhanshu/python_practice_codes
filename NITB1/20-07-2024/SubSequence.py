@@ -10,4 +10,5 @@ def printAllSubsequence(arr,index,ans):
 def main():
     arr = [1,2,3]
     printAllSubsequence(arr,0,[])
+    
 main()
