@@ -51,27 +51,46 @@ def buildGraphWithAdjacencyList(edges,n):
         des = edge[1]
         wt  = edge[2]
         graph[src].append([src,des,wt])
-        graph[des].append([des,src,wt])
+        # graph[des].append([des,src,wt])
     return graph
 
 def printGraphInAdjacencyList(graph):
     for node in graph:
         for edges in node:
-            print(edges,end=" ")
+            print(edges ,end=" ")
+
+
+def hasPath(graph,src,des,visited):
+    if src == des:
+        return True
+    nbrs = graph[src]
+    for nbr in nbrs:
+        if visited[nbr[1]] == 0:
+            visited[nbr[1]] = 1
+            ans = hasPath(graph,nbr[1],des,visited)
+            if ans == True:
+                return True
+    return False
+    
+
+
+
 
 def main():
-    edges = [[0,1,10],[0,2,3],[1,3,-3],[2,3,23],[4,5,123],[3,4,23],[4,6,3],[5,7,9],[6,7,9]]
-    n = 8
+    edges = [[0,2,34],[0,1,10],[1,0,2],[1,3,2],[3,2,12],[3,4,6],[4,5,7],[5,6,7],[5,7,19],[8,7,90],[8,6,56],[4,1,2]]
+    n = 9
     # graph = buildGraph(edges,n)
     # #printGraph(graph)
-    # src = 0
-    # des = 7
-    # visited = [0 for i in range(n)]
-    # visited[src] = 1
+    src = 0
+    des = 8
+    visited = [0 for i in range(n)]
+    visited[src] = 1
     # #ans = hasPath(graph,src,des,visited)
     # #print(ans)
     # printAllPath(graph,src,des,visited,"")
     graph = buildGraphWithAdjacencyList(edges,n)
-    printGraphInAdjacencyList(graph)
+    #printGraphInAdjacencyList(graph)
+    ans = hasPath(graph,src,des,visited)
+    print(ans)
 
 main()
