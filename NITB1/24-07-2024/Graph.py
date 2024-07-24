@@ -20,7 +20,6 @@ def printGraph(graph):
 def hasPath(graph,src,des,visited):
     if src == des:
         return True
-
     nbrs = graph[src]
     for i in range(len(nbrs)):
         if nbrs[i] == 1:
@@ -31,18 +30,30 @@ def hasPath(graph,src,des,visited):
                     return True
     return False
 
-
-
-
+def printAllPath(graph,src,des,visited,psf):
+    if src == des:
+        print(psf)
+        return
+    nbrs = graph[src]
+    for i in range(len(nbrs)):
+        if nbrs[i] == 1:
+            if visited[i] == 0:
+                visited[i] = 1
+                printAllPath(graph,i,des,visited,
+                    str(src)+"->"+str(i) if psf == "" else psf+"->"+str(i)
+                )
+                visited[i] = 0
 def main():
-    edges = [[0,1],[0,2],[1,3],[2,3],[4,5],[4,6],[5,7],[6,7]]
+    edges = [[0,1],[0,2],[1,3],[2,3],[4,5],[3,4],[4,6],[5,7],[6,7]]
     n = 8
     graph = buildGraph(edges,n)
     #printGraph(graph)
-    src = 3
-    des = 5
+    src = 0
+    des = 7
     visited = [0 for i in range(n)]
-    ans = hasPath(graph,src,des,visited)
-    print(ans)
+    visited[src] = 1
+    #ans = hasPath(graph,src,des,visited)
+    #print(ans)
+    printAllPath(graph,src,des,visited,"")
 
 main()
