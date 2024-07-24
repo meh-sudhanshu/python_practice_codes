@@ -1,4 +1,7 @@
 
+largestPath = ""
+smallestPath = ""
+
 
 def buildGraph(edges,n):
     graph = [[0 for i in range(n)] for j in range(n)]
@@ -31,8 +34,14 @@ def hasPath(graph,src,des,visited):
     return False
 
 def printAllPath(graph,src,des,visited,psf):
+    global largestPath
+    global smallestPath
     if src == des:
-        print(psf)
+        if len(psf) > len(largestPath):
+            largestPath = psf
+        if smallestPath == "" or len(psf) < len(smallestPath):
+            smallestPath = psf
+        #print(psf)
         return
     nbrs = graph[src]
     for i in range(len(nbrs)):
@@ -40,7 +49,7 @@ def printAllPath(graph,src,des,visited,psf):
             if visited[i] == 0:
                 visited[i] = 1
                 printAllPath(graph,i,des,visited,
-                    str(src)+"->"+str(i) if psf == "" else psf+"->"+str(i)
+                    str(src)+"->"+str(i) if psf == "" else psf+"->"+str(i),
                 )
                 visited[i] = 0
 
@@ -77,20 +86,24 @@ def hasPath(graph,src,des,visited):
 
 
 def main():
-    edges = [[0,2,34],[0,1,10],[1,0,2],[1,3,2],[3,2,12],[3,4,6],[4,5,7],[5,6,7],[5,7,19],[8,7,90],[8,6,56],[4,1,2]]
-    n = 9
-    # graph = buildGraph(edges,n)
+    global smallestPath
+    global largestPath
+    edges = [[0,1],[0,2],[1,3],[3,4],[4,5],[4,6],[5,7],[6,7],[1,5],[2,3]]
+    n = 8
+    graph = buildGraph(edges,n)
     # #printGraph(graph)
     src = 0
-    des = 8
+    des = 7
     visited = [0 for i in range(n)]
     visited[src] = 1
     # #ans = hasPath(graph,src,des,visited)
     # #print(ans)
-    # printAllPath(graph,src,des,visited,"")
-    graph = buildGraphWithAdjacencyList(edges,n)
+    printAllPath(graph,src,des,visited,"")
+    print(smallestPath)
+    print(largestPath)
+    #graph = buildGraphWithAdjacencyList(edges,n)
     #printGraphInAdjacencyList(graph)
-    ans = hasPath(graph,src,des,visited)
-    print(ans)
+    #ans = hasPath(graph,src,des,visited)
+    #print(ans)
 
 main()
