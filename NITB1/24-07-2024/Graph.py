@@ -135,9 +135,28 @@ def isCyclic(graph,n):
                 queue.append([i,psf+str(i)])
 
     return sc
+def expandNode(graph,i,j,visited,n):
+    if i>=n or i<0 or j>=n or j<0 or graph[i][j] == 0 or visited[i][j] == 1:
+        return
+    visited[i][j] = 1
+
+    expandNode(graph,i+1,j,visited,n)
+    expandNode(graph,i-1,j,visited,n)
+    expandNode(graph,i,j+1,visited,n)
+    expandNode(graph,i,j-1,visited,n)
+
+
 
         
-
+def getNumberOfIsland(graph,n):
+    count = 0
+    visited = [[0 for i in range(n)] for j in range(n)]
+    for i in range(n):
+        for j in range(n):
+            if graph[i][j] == 1 and visited[i][j] == 0:
+                expandNode(graph,i,j,visited,n)
+                count+=1
+    return count
 
 
 
@@ -164,7 +183,11 @@ def main():
     #print(ans)
     #ans = isCyclic(graph,n)
     #print(ans)
-    ans = getAllCompoents(graph,n)
+    matrix =  [[1,1,1,0,0,1],[0,0,0,0,0,1],[0,1,1,0,0,1],[1,1,1,1,0,1],[1,0,0,1,1,0],
+        [0,0,0,1,1,0]
+    ]
+    # ans = getAllCompoents(graph,n)
+    # print(ans)
+    ans = getNumberOfIsland(matrix,6)
     print(ans)
-
 main()
