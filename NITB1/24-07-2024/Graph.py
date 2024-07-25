@@ -92,6 +92,31 @@ def bfs(graph,src,visited,queue):
         for i in range(len(nbrs)):
             if nbrs[i] == 1 and visited[i] == 0:
                 queue.append([i,psf+str(i)])
+
+def isCyclic(graph,n):
+    sc = -1
+    queue = []
+    queue.append([0,"0"])
+    visited = [0 for i in range(n)]
+    while len(queue) > 0:
+        popepedElement = queue.pop(0)
+        currentNode = popepedElement[0]
+        if visited[currentNode] == 1:
+            print(popepedElement[1])
+            # if sc == -1:
+            #     sc = popepedElement[1]+str(currentNode)
+            # elif len(popepedElement[1]+str(currentNode)) < len(sc):
+            #     sc =  popepedElement[1]+str(currentNode)
+        psf = popepedElement[1]
+        visited[currentNode] = 1
+        #print(currentNode,"->",psf)
+        nbrs = graph[currentNode]
+        for i in range(len(nbrs)):
+            if nbrs[i] == 1 and visited[i] == 0:
+                queue.append([i,psf+str(i)])
+
+    return sc
+
         
 
 
@@ -100,14 +125,14 @@ def bfs(graph,src,visited,queue):
 def main():
     global smallestPath
     global largestPath
-    edges = [[0,1],[0,2],[1,3],[3,4],[4,5],[4,6],[5,7],[6,7],[1,5],[2,3]]
+    edges = [[0,1],[0,2],[3,4],[4,5],[4,6],[6,7],[2,3],[1,3],[4,7]]
     n = 8
     graph = buildGraph(edges,n)
     # #printGraph(graph)
     src = 0
     visited = [0 for i in range(n)]
     queue = [[0,"0"]]
-    bfs(graph,src,visited,queue)
+    #bfs(graph,src,visited,queue)
     # visited[src] = 1
     # #ans = hasPath(graph,src,des,visited)
     # #print(ans)
@@ -118,5 +143,7 @@ def main():
     #printGraphInAdjacencyList(graph)
     #ans = hasPath(graph,src,des,visited)
     #print(ans)
+    ans = isCyclic(graph,n)
+    print(ans)
 
 main()
