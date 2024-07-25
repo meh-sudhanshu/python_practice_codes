@@ -93,6 +93,25 @@ def bfs(graph,src,visited,queue):
             if nbrs[i] == 1 and visited[i] == 0:
                 queue.append([i,psf+str(i)])
 
+def getCurrentComponent(graph,src,visited,currentComponent):
+    visited[src] = 1
+    currentComponent.append(src)
+    nbrs = graph[src]
+    for i in range(len(nbrs)):
+        if nbrs[i] == 1 and visited[i] == 0:
+            getCurrentComponent(graph,i,visited,currentComponent)
+    
+def getAllCompoents(graph,n):
+    visited = [0 for i in range(n)]
+    ans = []
+    for i in range(n):
+        if visited[i] == 0:
+            visited[i] = 1
+            currentComponent = []
+            getCurrentComponent(graph,i,visited,currentComponent)
+            ans.append(currentComponent)
+    return ans
+
 def isCyclic(graph,n):
     sc = -1
     queue = []
@@ -125,8 +144,8 @@ def isCyclic(graph,n):
 def main():
     global smallestPath
     global largestPath
-    edges = [[0,1],[0,2],[3,4],[4,5],[4,6],[6,7],[2,3],[1,3],[4,7]]
-    n = 8
+    edges = [[0,1],[0,2],[2,1],[3,6],[3,4],[6,5],[4,5],[7,8],[9,10],[9,11],[10,11]]
+    n = 12
     graph = buildGraph(edges,n)
     # #printGraph(graph)
     src = 0
@@ -143,7 +162,9 @@ def main():
     #printGraphInAdjacencyList(graph)
     #ans = hasPath(graph,src,des,visited)
     #print(ans)
-    ans = isCyclic(graph,n)
+    #ans = isCyclic(graph,n)
+    #print(ans)
+    ans = getAllCompoents(graph,n)
     print(ans)
 
 main()
