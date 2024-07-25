@@ -81,6 +81,18 @@ def hasPath(graph,src,des,visited):
                 return True
     return False
     
+def bfs(graph,src,visited,queue):
+    while len(queue) > 0:
+        popepedElement = queue.pop(0)
+        currentNode = popepedElement[0]
+        psf = popepedElement[1]
+        visited[currentNode] = 1
+        print(currentNode,"->",psf)
+        nbrs = graph[currentNode]
+        for i in range(len(nbrs)):
+            if nbrs[i] == 1 and visited[i] == 0:
+                queue.append([i,psf+str(i)])
+        
 
 
 
@@ -93,14 +105,15 @@ def main():
     graph = buildGraph(edges,n)
     # #printGraph(graph)
     src = 0
-    des = 7
     visited = [0 for i in range(n)]
-    visited[src] = 1
+    queue = [[0,"0"]]
+    bfs(graph,src,visited,queue)
+    # visited[src] = 1
     # #ans = hasPath(graph,src,des,visited)
     # #print(ans)
-    printAllPath(graph,src,des,visited,"")
-    print(smallestPath)
-    print(largestPath)
+    # printAllPath(graph,src,des,visited,"")
+    # print(smallestPath)
+    # print(largestPath)
     #graph = buildGraphWithAdjacencyList(edges,n)
     #printGraphInAdjacencyList(graph)
     #ans = hasPath(graph,src,des,visited)
