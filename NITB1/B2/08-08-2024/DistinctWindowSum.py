@@ -28,6 +28,7 @@ def getMaximumSubArraySumWithDistinctElement(arr,k):
                 del myDict[arr[i-1]]
             else:
                 myDict[arr[i-1]]-=1
+                
             if arr[j] in myDict:
                 myDict[arr[j]]+=1
             else:
