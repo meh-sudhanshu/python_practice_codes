@@ -1,14 +1,28 @@
 
 
 maxCost = float("-inf")
+minCost = float("+inf")
+
+largestPath = ""
+smallestPath = -1
 
 
 
 def multiSolver(graph,src,des,visited,psf,csf):
     global maxCost
+    global minCost
+    global smallestPath
+    global largestPath
     if src == des:
+        if len(psf) > len(largestPath):
+            largestPath = psf
+        if smallestPath == -1 or len(psf) < len(smallestPath):
+            smallestPath = psf
+
         if csf > maxCost:
             maxCost = csf
+        if csf < minCost:
+            minCost = csf
         return
     nbrs = graph[src]
 
@@ -70,5 +84,8 @@ def main():
 
     multiSolver(graph,src,des,visited,str(src),0)
     print(maxCost," max cost ")
+    print(minCost, "min cost")
+    print(smallestPath, "smallest path")
+    print(largestPath, "largest path")
 
 main()
