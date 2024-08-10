@@ -44,9 +44,8 @@ def buildGraph(edges,n):
     for edge in edges:
         src = edge[0]
         des = edge[1]
-        wt = edge[2]
-
-        graph[src][des] = wt
+        graph[src][des] = 1
+        graph[des][src] = 1
 
     return graph
 
@@ -66,6 +65,23 @@ def printGraph(graph):
         print()
 
 
+def bfs(graph,src,visited,queue):
+    while len(queue) > 0:
+        removedElement = queue.pop()
+        currentDestination = removedElement[0]
+        psf = removedElement[1]
+        visited[currentDestination] = 1
+        print(str(currentDestination)+"|"+psf)
+        nbrs = graph[currentDestination]
+        for i in range(len(nbrs)):
+            if nbrs[i] == 1 and visited[i] == 0:
+                queue.append([i,psf+"->"+str(i)])
+
+
+
+
+
+
 
 
 
@@ -76,16 +92,23 @@ def main():
     ]
 
     graph = buildGraph(edges,n)
-    src = 0
-    des = 7
+
+    queue = [[0,"0"]]
     visited = [0 for i in range(n)]
-    visited[src] = 1
+    src = 0
+    bfs(graph,src,visited,queue)
+
+
+    #src = 0
+    #des = 7
+    #visited = [0 for i in range(n)]
+    #visited[src] = 1
     #printGraph(graph)
 
-    multiSolver(graph,src,des,visited,str(src),0)
-    print(maxCost," max cost ")
-    print(minCost, "min cost")
-    print(smallestPath, "smallest path")
-    print(largestPath, "largest path")
+    #multiSolver(graph,src,des,visited,str(src),0)
+    #print(maxCost," max cost ")
+    #print(minCost, "min cost")
+    # print(smallestPath, "smallest path")
+    # print(largestPath, "largest path")
 
 main()
