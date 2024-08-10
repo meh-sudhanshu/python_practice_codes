@@ -1,4 +1,24 @@
 
+def printAllPath(graph,src,des,visited,psf):
+    if src == des:
+        print(psf)
+        return
+    nbrs = graph[src]
+
+    for i in range(len(nbrs)):
+        if nbrs[i] == 1:
+            if visited[i] == 0:
+                visited[i] = 1
+                printAllPath(graph,i,des,visited, psf+"->"+str(i))
+                visited[i] = 0
+    return False
+
+
+
+
+
+
+
 
 def hasPath(graph,src,des,visited):
     if src == des:
@@ -49,18 +69,20 @@ def printGraph(graph):
 
 
 def main():
-    edges = [[0,1],[0,2],[1,3],[2,3],[4,5],[4,6],[6,7],[5,7]]
+    edges = [[0,1],[0,2],[1,3],[2,3],[3,4],[4,5],[4,6],[6,7],[5,7]]
     n = 8
     # bidirectional, non-weighted no self cycle graph
     graph = buildGraph(edges,n)
     #printGraph(graph)
     src = 0
-    des = 2
+    des = 7
     visited = [0 for i in range(n)]
     visited[src] = 1
     
-    isPathExist = hasPath(graph,src,des,visited)
-    print(isPathExist)
+    #isPathExist = hasPath(graph,src,des,visited)
+    #print(isPathExist)
+
+    printAllPath(graph,src,des,visited,str(src))
 
 
 main()
