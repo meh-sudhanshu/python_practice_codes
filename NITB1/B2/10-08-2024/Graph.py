@@ -67,7 +67,7 @@ def printGraph(graph):
 
 def bfs(graph,src,visited,queue):
     while len(queue) > 0:
-        removedElement = queue.pop()
+        removedElement = queue.pop(0)
         currentDestination = removedElement[0]
         psf = removedElement[1]
         visited[currentDestination] = 1
