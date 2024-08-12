@@ -86,7 +86,7 @@ def isCyclic(graph,n):
         removedElement = queue.pop(0)
         currentDestination = removedElement[0]
         psf = removedElement[1]
-        if visited[currentDestination] == 1:
+        if visited[currentDestination] == 1: 
             return True
         visited[currentDestination] = 1
         #print(str(currentDestination)+"|"+psf)
@@ -95,6 +95,33 @@ def isCyclic(graph,n):
             if nbrs[i] == 1 and visited[i] == 0:
                 queue.append([i,psf+"->"+str(i)])
     return False
+
+
+def expandNode(graph,n,src,currComponent,visited):
+    nbrs = graph[src]
+    for i in range(len(nbrs)):
+        if nbrs[i] == 1 and visited[i] == 0:
+            visited[i] = 1
+            currComponent.append(i)
+            expandNode(graph,n,i,currComponent,visited)
+
+
+
+
+
+
+
+
+def getAllComponents(graph,n):
+    visited = [0 for i in range(n)]
+    ans = []
+    for i in range(n):
+        if visited[i] == 0:
+            visited[i] = 1
+            currComponent = [i]
+            expandNode(graph,n,i,currComponent,visited)
+            ans.append(currComponent)
+    return ans
 
 
 
@@ -106,8 +133,8 @@ def isCyclic(graph,n):
 
 
 def main():
-    n = 2
-    edges = [[0,1,3]]
+    n = 12
+    edges = [[0,2],[0,3],[1,3],[4,5],[6,7],[6,8],[8,9],[10,11]]
     
 
     graph = buildGraph(edges,n)
@@ -116,8 +143,12 @@ def main():
     visited = [0 for i in range(n)]
     src = 0
     #bfs(graph,src,visited,queue)
-    ans = isCyclic(graph,n)
+    # ans = isCyclic(graph,n)
+    # print(ans)
+
+    ans = getAllComponents(graph,n)
     print(ans)
+
 
 
     #src = 0
