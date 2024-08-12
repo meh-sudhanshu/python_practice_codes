@@ -78,6 +78,26 @@ def bfs(graph,src,visited,queue):
                 queue.append([i,psf+"->"+str(i)])
 
 
+def isCyclic(graph,n):
+    queue = []
+    queue.append([0,"0"])
+    visited = [0 for i in range(n)]
+    while len(queue) > 0:
+        removedElement = queue.pop(0)
+        currentDestination = removedElement[0]
+        psf = removedElement[1]
+        if visited[currentDestination] == 1:
+            return True
+        visited[currentDestination] = 1
+        #print(str(currentDestination)+"|"+psf)
+        nbrs = graph[currentDestination]
+        for i in range(len(nbrs)):
+            if nbrs[i] == 1 and visited[i] == 0:
+                queue.append([i,psf+"->"+str(i)])
+    return False
+
+
+
 
 
 
@@ -86,17 +106,18 @@ def bfs(graph,src,visited,queue):
 
 
 def main():
-    n = 8
-    edges = [[0,1,3],[0,3,2],[1,3,2],[1,2,5],[2,3,4],[2,4,6],[3,4,40],[4,5,3],[5,6,8],
-        [5,7,7],[6,7,2]
-    ]
+    n = 2
+    edges = [[0,1,3]]
+    
 
     graph = buildGraph(edges,n)
 
     queue = [[0,"0"]]
     visited = [0 for i in range(n)]
     src = 0
-    bfs(graph,src,visited,queue)
+    #bfs(graph,src,visited,queue)
+    ans = isCyclic(graph,n)
+    print(ans)
 
 
     #src = 0
