@@ -35,7 +35,7 @@ def hasPath(graph,n,src,des,visited):
 
 
 def main():
-    edges = [[0,1],[0,2],[1,3],[3,2],[4,6],[4,5],[5,7],[6,7]]
+    edges = [[0,1],[0,2],[1,3],[3,2], [4,6],[4,5],[5,7],[6,7]]
     n = 8
     graph = buildGraph(edges,n)
     src = 0
