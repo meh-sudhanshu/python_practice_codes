@@ -14,6 +14,9 @@ class Tree:
         st.append(node)
         i = 1
         while len(st) > 0 and i<len(arr):
+            if arr[i] == None:
+                i+=1
+                continue
             newNode = Node(arr[i])
             peekNode = st[-1]
             if peekNode.index == 1:
@@ -30,14 +33,18 @@ class Tree:
 
     def printTree(self,node):
         if node == None:
-            print(None,end=" ")
             return 
         else:
             print(node.data,end=" ")
             self.printTree(node.left)
             self.printTree(node.right)
 
-
+    def getMinimum(self,node):
+        if node == None:
+            return float("+inf")
+        ans1 = self.getMinimum(node.left)
+        ans2 = self.getMinimum(node.right)
+        return ans1 if ans1<ans2 and ans1<node.data else ans2 if ans2<ans1 and ans2<node.data else node.data
 
 
 def main():
@@ -45,5 +52,8 @@ def main():
     treeOperator = Tree()
     tree = treeOperator.buildTree(arr)
     treeOperator.printTree(tree)
+    print()
+    minimumValue = treeOperator.getMinimum(tree)
+    print(minimumValue)
 
 main()

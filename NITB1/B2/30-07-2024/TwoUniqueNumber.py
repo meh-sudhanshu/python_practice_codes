@@ -10,7 +10,6 @@ def getFirstSetBitPosition(num):
 def getIthBit(num,i):
     return True if (((num>>(i-1))%2 == 1)) else False
 
-
 def getBothUniqueNumber(arr):
     allXor = 0
     for e in arr: allXor = allXor ^ e

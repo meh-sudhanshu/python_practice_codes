@@ -1,6 +1,3 @@
-
-
-
 def getMinDecrement(arr):
     allXor = 0
     for e in arr: allXor = allXor ^ e

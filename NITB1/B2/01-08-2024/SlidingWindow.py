@@ -16,7 +16,7 @@ def getMaximumSum(arr,k):
             ps = _sum
         i+=1
         j+=1
-        ans = max(ans,_sum)
+        ans = max(ans,_sum) 
 
     return ans
 

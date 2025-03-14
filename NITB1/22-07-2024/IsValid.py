@@ -19,7 +19,7 @@ def isValid(s):
 
 
 def main():
-    _str = "(((({}[]())))"
+    _str = "(((({}[] ())))"
     ans = isValid(_str)
     print(ans)
 
